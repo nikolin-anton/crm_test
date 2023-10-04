@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
+
+            $table->foreignId('users')
+                ->nullable()
+                ->constrained();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->date('foundation_year');
+            $table->text('description');
+
             $table->timestamps();
         });
     }
