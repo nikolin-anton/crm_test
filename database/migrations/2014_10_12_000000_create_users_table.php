@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Arr;
+use App\Models\Enums\Role;
 
 return new class extends Migration
 {
@@ -18,6 +20,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->enum('role', Arr::pluck(Role::cases(), 'value'))->default(2);
             $table->rememberToken();
             $table->timestamps();
         });
